@@ -59,10 +59,10 @@
 #define STRINGIZE_(x) #x
 #define STRINGIZE(x) STRINGIZE_(x)
 
-#if CANTACT_BUILD_NUMBER == 0
-    #define CANTACT_SW_VER		"dev"
+#ifdef CANTACT_BUILD_ID
+    #define CANTACT_SW_VER		"g" STRINGIZE(CANTACT_BUILD_ID)
 #else
-    #define CANTACT_SW_VER		"b" STRINGIZE(CANTACT_BUILD_NUMBER)
+    #define CANTACT_SW_VER		"dev"
 #endif
 
 #define USBD_VID			0xad50

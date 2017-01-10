@@ -8,13 +8,13 @@
 # user configuration:
 #######################################
 
-BUILD_NUMBER ?= 0
+BUILD_ID = ${shell git describe --dirty=_d --tags --always || echo "dev"}
 
 # SOURCES: list of sources in the user application
 SOURCES = main.c usbd_conf.c usbd_cdc_if.c usb_device.c usbd_desc.c stm32f0xx_hal_msp.c stm32f0xx_it.c system_stm32f0xx.c can.c slcan.c led.c
 
 # TARGET: name of the user application
-TARGET = CANtact-b$(BUILD_NUMBER)
+TARGET = CANtact-${BUILD_ID}
 
 # BUILD_DIR: directory to place output files in
 BUILD_DIR = build
@@ -24,7 +24,7 @@ LD_SCRIPT = STM32F042C6_FLASH.ld
 
 # USER_DEFS user defined macros
 USER_DEFS = -D HSI48_VALUE=48000000 -D HSE_VALUE=16000000
-USER_DEFS += -D CANTACT_BUILD_NUMBER=$(BUILD_NUMBER)
+USER_DEFS += -D CANTACT_BUILD_ID=$(BUILD_ID)
 # USER_INCLUDES: user defined includes
 USER_INCLUDES =
 
